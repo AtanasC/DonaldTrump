@@ -290,6 +290,7 @@ GameOverState.prototype.draw = function(game, dt, ctx) {
     ctx.fillText("Game Over!", game.width / 2, game.height/2 - 40); 
     ctx.font="16px Arial";
 <<<<<<< HEAD
+<<<<<<< HEAD
     ctx.fillText("You caught " + game.lives + " Mexicans and got to level " + game.level + ".", game.width / 2, game.height/2);
     ctx.font="16px Arial";
     ctx.fillText("Press Enter to play again.", game.width / 2, game.height/2 + 40);   
@@ -299,6 +300,11 @@ GameOverState.prototype.draw = function(game, dt, ctx) {
     ctx.font="16px Arial";
     ctx.fillText("Press 'enter' to play again.", game.width / 2, game.height/2 + 40);   
 >>>>>>> origin/master
+=======
+    ctx.fillText("You caught " + game.lives + " Mexicans and got to level " + game.level, game.width / 2, game.height/2);
+    ctx.font="16px Arial";
+    ctx.fillText("Press 's' to play again.", game.width / 2, game.height/2 + 40);   
+>>>>>>> parent of a80eafc... Text correction
 };
 
 GameOverState.prototype.keyDown = function(game, keyCode) {
@@ -608,13 +614,9 @@ PlayState.prototype.update = function(game, dt) {
 
     function bombCollision(){
         game.score = game.score - 5;
-    
-       
-
         game.sounds.playSound('explosion');
     }
 
-    	
 
 
     //  Check for invader/ship collisions.
