@@ -26,7 +26,7 @@
 var pace = 1;
 var jumping = false;
 var gravitySpeed = 2.5;
-
+var brickBool = false;
 
 
 
@@ -247,13 +247,17 @@ WelcomeState.prototype.draw = function(game, dt, ctx) {
     ctx.fillStyle = '#ff0000';
     ctx.textBaseline="center"; 
     ctx.textAlign="center"; 
-    ctx.fillText("Build That Wall!", game.width / 2, game.height/2 - 80); 
+    ctx.fillText("Build That Wall!", game.width / 2, game.height/2 - 100); 
 
     ctx.font="16px Arial";
-    ctx.fillStyle = '#000080';
-    ctx.fillText("The Donald has been elected! He needs your help to build that wall!", game.width / 2, game.height/2 - 40);
-    ctx.fillText("Launch bricks at the Mexican resistance to build up your wall," , game.width / 2, game.height/2 - 20);
-    ctx.fillText("catch Mexicans to prevent your wall from being destroyed." , game.width / 2, game.height/2); 
+    ctx.fillStyle = '#0000ff';
+    ctx.fillText("The Donald has been elected! He needs your help to build that wall!", game.width / 2, game.height/2 - 60);
+    ctx.fillText("Launch bricks at the Mexican resistance to build up your wall," , game.width / 2, game.height/2 - 40);
+    ctx.fillText("catch Mexicans to prevent your wall from being destroyed." , game.width / 2, game.height/2 - 20);
+
+    ctx.font="24px Arial";
+    ctx.fillStyle = '#808080';
+    ctx.fillText("PRESS ENTER TO START" , game.width / 2, game.height/2 + 20); 
 };
 
 WelcomeState.prototype.keyDown = function(game, keyCode) {
@@ -656,6 +660,7 @@ PlayState.prototype.draw = function(game, dt, ctx) {
     
     //  Draw ship.
     var trumpImg = new Image();
+    var trumpImg5 = new Image();
     var trumpImg4 = new Image();
     var trumpImg3 = new Image();
     var trumpImg2 = new Image();
@@ -667,7 +672,8 @@ PlayState.prototype.draw = function(game, dt, ctx) {
     trumpImg2.src = 'img/Trump_Jump_Left.png';
     trumpImg3.src = 'img/Trump_Jump_Right.png';
     trumpImg4.src = 'img/Trump_Jump_Up.png';
-    
+    trumpImg5.src = 'img/Trump_Throws.png';
+   
    if (walking)
    {
    	
@@ -675,6 +681,11 @@ PlayState.prototype.draw = function(game, dt, ctx) {
    	if(pace == 1)
    	{
    	  if(game.pressedKeys[37] && jumping == true)ctx.drawImage(trumpImg2, this.ship.x - (this.ship.width / 2) - 30, (this.ship.y - (this.ship.height / 2)) - 34); 
+      else if(game.pressedKeys[37] && brickBool == true)
+      {
+        brickBool = false;
+        ctx.drawImage(trumpImg5, this.ship.x - (this.ship.width / 2) - 30, (this.ship.y - (this.ship.height / 2)) - 34);
+      }
       else ctx.drawImage(trumpImg0, this.ship.x - (this.ship.width / 2) - 30, (this.ship.y - (this.ship.height / 2)) - 34);	
    	  
     }
@@ -682,15 +693,27 @@ PlayState.prototype.draw = function(game, dt, ctx) {
    	{
    	  
       if(game.pressedKeys[39] && jumping == true)ctx.drawImage(trumpImg3, this.ship.x - (this.ship.width / 2) - 30, (this.ship.y - (this.ship.height / 2)) - 34);  
+      else if(game.pressedKeys[39] && brickBool == true)
+      {
+        brickBool = false;
+        ctx.drawImage(trumpImg5, this.ship.x - (this.ship.width / 2) - 30, (this.ship.y - (this.ship.height / 2)) - 34);
+      }
       else ctx.drawImage(trumpImg1, this.ship.x - (this.ship.width / 2) - 30, (this.ship.y - (this.ship.height / 2)) - 34);	
    	  
     }
    }
+
    else if (jumping)
     {
         ctx.drawImage(trumpImg4, this.ship.x - (this.ship.width / 2) - 30, (this.ship.y - (this.ship.height / 2)) - 34);
         //alert("Javascript alert for Jump!");
     }
+    else if (brickBool)
+   {
+        brickBool = false;
+        ctx.drawImage(trumpImg5, this.ship.x - (this.ship.width / 2) - 30, (this.ship.y - (this.ship.height / 2)) - 34);
+        
+   }
    else
    {
    	  ctx.drawImage(trumpImg, this.ship.x - (this.ship.width / 2) - 30, (this.ship.y - (this.ship.height / 2)) - 34);	
@@ -805,9 +828,12 @@ PlayState.prototype.keyUp = function(game, keyCode) {
 PlayState.prototype.fireRocket = function() {
     //  If we have no last rocket time, or the last rocket time 
     //  is older than the max rocket rate, we can fire.
+    brickBool = true;
     if(this.lastRocketTime === null || ((new Date()).valueOf() - this.lastRocketTime) > (1000 / this.config.rocketMaxFireRate))
     {   
         //  Add a rocket.
+
+
         this.rockets.push(new Rocket(this.ship.x, this.ship.y - 12, this.config.rocketVelocity));
         this.lastRocketTime = (new Date()).valueOf();
         game.score = game.score - 1;
