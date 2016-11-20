@@ -243,21 +243,21 @@ WelcomeState.prototype.draw = function(game, dt, ctx) {
     //  Clear the background.
     ctx.clearRect(0, 0, game.width, game.height);
 
-    ctx.font="30px Arial";
+    ctx.font="45px Comic Sans MS";
     ctx.fillStyle = '#ff0000';
     ctx.textBaseline="center"; 
     ctx.textAlign="center"; 
-    ctx.fillText("Build That Wall!", game.width / 2, game.height/2 - 100); 
+    ctx.fillText("Build That Wall", game.width / 2, game.height/2 - 100); 
 
-    ctx.font="16px Arial";
-    ctx.fillStyle = '#0000ff';
-    ctx.fillText("The Donald has been elected! He needs your help to build that wall!", game.width / 2, game.height/2 - 60);
-    ctx.fillText("Launch bricks at the Mexican resistance to build up your wall," , game.width / 2, game.height/2 - 40);
-    ctx.fillText("catch Mexicans to prevent your wall from being destroyed." , game.width / 2, game.height/2 - 20);
+    ctx.font="18px Comic Sans MS";
+    ctx.fillStyle = '#00008B';
+    ctx.fillText("The Donald has been elected! He needs your help to build that wall!", game.width / 2, game.height/2 - 40);
+    ctx.fillText("Launch bricks at the Mexican resistance to build up your wall," , game.width / 2, game.height/2 - 20);
+    ctx.fillText("catch Mexicans to prevent it from being destroyed." , game.width / 2, game.height/2 );
 
     ctx.font="24px Arial";
     ctx.fillStyle = '#808080';
-    ctx.fillText("PRESS ENTER TO START" , game.width / 2, game.height/2 + 20); 
+    ctx.fillText("PRESS ENTER TO START" , game.width / 2, game.height/2 + 100); 
 };
 
 WelcomeState.prototype.keyDown = function(game, keyCode) {
@@ -886,7 +886,7 @@ LevelIntroState.prototype.draw = function(game, dt, ctx) {
     ctx.fillStyle = '#ffffff';
     ctx.textBaseline="middle"; 
     ctx.textAlign="center"; 
-    ctx.fillText("Start of Level " + this.level, game.width / 2, game.height/2);
+    ctx.fillText("Level " + this.level, game.width / 2, game.height/2);
     ctx.font="24px Arial";
     ctx.fillText("Making America Great Again in " + this.countdownMessage, game.width / 2, game.height/2 + 36);      
     jumping = false;
