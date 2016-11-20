@@ -680,6 +680,11 @@ PlayState.prototype.draw = function(game, dt, ctx) {
    	if(pace == 1)
    	{
    	  if(game.pressedKeys[37] && jumping == true)ctx.drawImage(trumpImg2, this.ship.x - (this.ship.width / 2) - 30, (this.ship.y - (this.ship.height / 2)) - 34); 
+      else if(game.pressedKeys[37] && brickBool == true)
+      {
+        brickBool = false;
+        ctx.drawImage(trumpImg5, this.ship.x - (this.ship.width / 2) - 30, (this.ship.y - (this.ship.height / 2)) - 34);
+      }
       else ctx.drawImage(trumpImg0, this.ship.x - (this.ship.width / 2) - 30, (this.ship.y - (this.ship.height / 2)) - 34);	
    	  
     }
@@ -687,6 +692,11 @@ PlayState.prototype.draw = function(game, dt, ctx) {
    	{
    	  
       if(game.pressedKeys[39] && jumping == true)ctx.drawImage(trumpImg3, this.ship.x - (this.ship.width / 2) - 30, (this.ship.y - (this.ship.height / 2)) - 34);  
+      else if(game.pressedKeys[39] && brickBool == true)
+      {
+        brickBool = false;
+        ctx.drawImage(trumpImg5, this.ship.x - (this.ship.width / 2) - 30, (this.ship.y - (this.ship.height / 2)) - 34);
+      }
       else ctx.drawImage(trumpImg1, this.ship.x - (this.ship.width / 2) - 30, (this.ship.y - (this.ship.height / 2)) - 34);	
    	  
     }
