@@ -26,7 +26,7 @@
 var pace = 1;
 var jumping = false;
 var gravitySpeed = 2.5;
-var brick = false;
+var brickBool = false;
 
 
 
@@ -672,7 +672,7 @@ PlayState.prototype.draw = function(game, dt, ctx) {
     trumpImg3.src = 'img/Trump_Jump_Right.png';
     trumpImg4.src = 'img/Trump_Jump_Up.png';
     trumpImg5.src = 'img/Trump_Throws.png';
-    
+   
    if (walking)
    {
    	
@@ -691,14 +691,17 @@ PlayState.prototype.draw = function(game, dt, ctx) {
    	  
     }
    }
+
    else if (jumping)
     {
         ctx.drawImage(trumpImg4, this.ship.x - (this.ship.width / 2) - 30, (this.ship.y - (this.ship.height / 2)) - 34);
         //alert("Javascript alert for Jump!");
     }
-   else if (brick){
+    else if (brickBool)
+   {
+        brickBool = false;
         ctx.drawImage(trumpImg5, this.ship.x - (this.ship.width / 2) - 30, (this.ship.y - (this.ship.height / 2)) - 34);
-        alert("Javascript alert for Jump!");
+        
    }
    else
    {
@@ -814,7 +817,7 @@ PlayState.prototype.keyUp = function(game, keyCode) {
 PlayState.prototype.fireRocket = function() {
     //  If we have no last rocket time, or the last rocket time 
     //  is older than the max rocket rate, we can fire.
-    brick = true;
+    brickBool = true;
     if(this.lastRocketTime === null || ((new Date()).valueOf() - this.lastRocketTime) > (1000 / this.config.rocketMaxFireRate))
     {   
         //  Add a rocket.
