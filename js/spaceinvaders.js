@@ -286,8 +286,9 @@ GameOverState.prototype.draw = function(game, dt, ctx) {
     ctx.fillText("Game Over!", game.width / 2, game.height/2 - 40); 
     ctx.font="16px Arial";
     ctx.fillText("You caught " + game.lives + " Mexicans and got to level " + game.level, game.width / 2, game.height/2);
+    ctx.fillText("You were overwhelmed by the Mexicans!);
     ctx.font="16px Arial";
-    ctx.fillText("Press 's' to play again.", game.width / 2, game.height/2 + 40);   
+    ctx.fillText("Press 'enter' to play again.", game.width / 2, game.height/2 + 40);   
 };
 
 GameOverState.prototype.keyDown = function(game, keyCode) {
@@ -616,11 +617,11 @@ PlayState.prototype.update = function(game, dt) {
     }
 
     //  Check for failure
-    if(game.score <= 0 || game.score < 100 && this.invaders.length === 0) {
+    if(game.score <= 0 || game.score < 100 && this.invaders.length === 0 || this.invaders.length * 5 <= 100 - game.score){
     	
         game.moveToState(new GameOverState());
     }
-
+    
     //  Check for victory
     if(game.score >= 100) {
     	game.level += 1;
