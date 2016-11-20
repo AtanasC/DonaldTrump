@@ -296,7 +296,6 @@ GameOverState.prototype.draw = function(game, dt, ctx) {
     ctx.fillText("Press Enter to play again.", game.width / 2, game.height/2 + 40);   
 =======
     ctx.fillText("You caught " + game.lives + " Mexicans and got to level " + game.level, game.width / 2, game.height/2);
-    ctx.fillText("You were overwhelmed by the Mexicans!");
     ctx.font="16px Arial";
     ctx.fillText("Press 'enter' to play again.", game.width / 2, game.height/2 + 40);   
 >>>>>>> origin/master
